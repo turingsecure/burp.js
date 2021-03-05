@@ -28,7 +28,7 @@ function getTextContent(nodes: Node[], property: string): string | undefined {
   return findChildNode(nodes, property)?.textContent;
 }
 
-function parseRequestResponse(nodes: Node[]): RequestResponse[] {
+function parseRequestResponse(nodes: Node[], isBase64Encoded: boolean): RequestResponse[] {
   const requestResponseNodes = nodes.filter(
     (childNode: Node) => childNode.nodeName === "requestresponse"
   );
@@ -44,13 +44,18 @@ function parseRequestResponse(nodes: Node[]): RequestResponse[] {
       responseRedirected: getTextContent(childNodes, "responseRedirected") === "true"
     };
 
+    if (isBase64Encoded) {
+      responseRequestObject.request = atob(responseRequestObject.request);
+      responseRequestObject.response = atob(responseRequestObject.response);
+    }
+
     requestResponse.push(responseRequestObject);
   }
 
   return requestResponse;
 }
 
-function createIssueObject(node: ChildNode): Issue {
+function createIssueObject(node: ChildNode, isBase64Encoded: boolean): Issue {
   const childNodes: Node[] = [...node.childNodes];
 
   const issueObject: Issue = {
@@ -66,7 +71,7 @@ function createIssueObject(node: ChildNode): Issue {
     vulnerabilityClassifications: getTextContent(childNodes, "vulnerabilityClassifications"),
     issueDetail: getTextContent(childNodes, "issueDetail"),
     references: getTextContent(childNodes, "references"),
-    requestresponse: parseRequestResponse(childNodes)
+    requestresponse: parseRequestResponse(childNodes, isBase64Encoded)
   };
 
   return issueObject;
@@ -84,6 +89,12 @@ export function parse(xml: string): Issue[] {
   const parser: DOMParser = new DOMParser();
   const parsed: Document = parser.parseFromString(xml, "application/xml");
 
+  const isBase64Encoded =
+    parsed
+      .getElementsByTagName("requestresponse")[0]
+      .getElementsByTagName("request")[0]
+      .getAttribute("base64") === "true";
+
   // Get right issues node
   const issuesNode: Node = Array.from(parsed.childNodes).find(
     (node) => node.nodeName === "issues" && node.nodeType === 1
@@ -95,7 +106,7 @@ export function parse(xml: string): Issue[] {
   for (const node of issuesNode.childNodes) {
     if (node.nodeName !== "issue") continue;
 
-    output.push(createIssueObject(node));
+    output.push(createIssueObject(node, isBase64Encoded));
   }
 
   return output;

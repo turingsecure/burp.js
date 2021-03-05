@@ -24,15 +24,7 @@ yarn add @turingsecure/burp.js
 Import the library to use it in your code:
 
 ```js
-const BurpParser = require("@turingsecure/burp.js");
-
 import BurpParser from "@turingsecure/burp.js";
-```
-
-You can also use the library directly from the **CDN** (instead of yarn or npm):
-
-```html
-<script src="https://unpkg.com/@turingsecure/burp.js@latest/dist/production.min.js"></script>
 ```
 
 ## Usage
@@ -40,7 +32,7 @@ You can also use the library directly from the **CDN** (instead of yarn or npm):
 To parse an XML file, you just have to execute the imported function.
 
 ```js
-const xml = fs.readFileSync("./path/to/xml.xml");
+const xml = "burpscan xml";
 const parsed = BurpParser(xml);
 ```
 
