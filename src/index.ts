@@ -84,7 +84,7 @@ function createIssueObject(node: ChildNode, isBase64Encoded: boolean): Issue {
  *
  * @returns Issue[]
  */
-export function parse(xml: string): Issue[] {
+export function BurpParser(xml: string): Issue[] {
   // eslint-disable-next-line no-undef
   const parser: DOMParser = new DOMParser();
   const parsed: Document = parser.parseFromString(xml, "application/xml");

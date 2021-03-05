@@ -24,7 +24,7 @@ yarn add @turingsecure/burp.js
 Import the library to use it in your code:
 
 ```js
-import BurpParser from "@turingsecure/burp.js";
+import { BurpParser } from "@turingsecure/burp.js";
 ```
 
 ## Usage
@@ -36,11 +36,37 @@ const xml = "burpscan xml";
 const parsed = BurpParser(xml);
 ```
 
-Example output:
+**Note**: If the requests and response are base64 encoded, they will be automatically decoded
 
-```
+## API
 
-```
+The `BurpParser` function returns an array of issues.
+
+An issue object has the following properties:
+
+| Property                     | Type              |
+| ---------------------------- | ----------------- |
+| serialNumber                 | string            |
+| type                         | string            |
+| host                         | string            |
+| path                         | string            |
+| location                     | string            |
+| severity                     | string            |
+| confidence                   | string            |
+| issueBackground              | string            |
+| remediationBackground        | string            |
+| vulnerabilityClassifications | string            |
+| issueDetail                  | string            |
+| references                   | string            |
+| requestresponse              | RequestResponse[] |
+
+`requestresponse` is an array of `RequestResponse` objects with the following properties:
+
+| Property           | Type   |
+| ------------------ | ------ |
+| request            | string |
+| response           | string |
+| responseRedirected | string |
 
 ## Contributing
 

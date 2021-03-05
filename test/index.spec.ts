@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { parse } = require("../src/index");
+const { BurpParser } = require("../src/index");
 
 const xml = fs.readFileSync(path.join(__dirname, "__testdata__", "scan.xml"));
 const shortXml = fs.readFileSync(path.join(__dirname, "__testdata__", "short-scan.xml"));
@@ -8,15 +8,15 @@ const shortXmlBase64 = fs.readFileSync(
   path.join(__dirname, "__testdata__", "short-scan-base64.xml")
 );
 
-describe("parse", () => {
+describe("BurpParser", () => {
   it("Should return a list of issues", () => {
-    const issues = parse(xml);
+    const issues = BurpParser(xml);
 
     expect(issues.length).toBe(172);
   });
 
   it("Should have all properties", () => {
-    const issues = parse(shortXml);
+    const issues = BurpParser(shortXml);
 
     const [firstIssue] = issues;
 
@@ -36,7 +36,7 @@ describe("parse", () => {
   });
 
   it("Should decode requests and responses if they are base64 encoded", () => {
-    const issues = parse(shortXmlBase64);
+    const issues = BurpParser(shortXmlBase64);
 
     const [firstIssue] = issues;
 
