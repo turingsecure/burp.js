@@ -1,6 +1,6 @@
 <h1 align="center">burp.js by <a href="https://turingpoint.eu" target="_blank">turingpoint.</a></h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
@@ -37,6 +37,13 @@ const parsed = BurpParser(xml);
 ## API
 
 The `BurpParser` function returns an array of issues.
+
+If you do not want decoded requests and responses, you can pass a flag:
+
+```js
+const xml = "burpscan xml";
+const parsed = BurpParser(xml, false);
+```
 
 An issue object has the following properties:
 
