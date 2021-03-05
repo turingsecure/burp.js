@@ -8,10 +8,6 @@
 
 > burp.js is a client side parser for Burp XML output files.
 
-# DISLCLAIMER
-
-This library is WIP and should not be used in production, yet.
-
 ## Installation
 
 Install the `@turingsecure/burp.js` package:
@@ -36,7 +32,7 @@ const xml = "burpscan xml";
 const parsed = BurpParser(xml);
 ```
 
-**Note**: If the requests and response are base64 encoded, they will be automatically decoded
+**Note**: If the requests and responses are base64 encoded, they will be automatically decoded
 
 ## API
 
@@ -44,21 +40,21 @@ The `BurpParser` function returns an array of issues.
 
 An issue object has the following properties:
 
-| Property                     | Type              |
-| ---------------------------- | ----------------- |
-| serialNumber                 | string            |
-| type                         | string            |
-| host                         | string            |
-| path                         | string            |
-| location                     | string            |
-| severity                     | string            |
-| confidence                   | string            |
-| issueBackground              | string            |
-| remediationBackground        | string            |
-| vulnerabilityClassifications | string            |
-| issueDetail                  | string            |
-| references                   | string            |
-| requestresponse              | RequestResponse[] |
+| Property                     | Type               |
+| ---------------------------- | ------------------ |
+| serialNumber                 | string             |
+| type                         | string             |
+| host                         | string             |
+| path                         | string             |
+| location                     | string             |
+| severity                     | string             |
+| confidence                   | string             |
+| issueBackground              | string             |
+| remediationBackground        | string             |
+| vulnerabilityClassifications | string             |
+| issueDetail                  | string             |
+| references                   | string             |
+| requestresponse              | RequestResponse[ ] |
 
 `requestresponse` is an array of `RequestResponse` objects with the following properties:
 
