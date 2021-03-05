@@ -1,0 +1,38 @@
+{
+  "name": "burp.js",
+  "version": "0.0.1",
+  "description": "Client side parser for Burp Suite XML output files.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "npx eslint ./",
+    "test": "jest --detectOpenHandles --forceExit"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turingsecure/burp.js.git"
+  },
+  "keywords": [
+    "burp",
+    "xml",
+    "parser",
+    "security",
+    "javascript",
+    "itsec"
+  ],
+  "author": "turingsecure",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/turingsecure/burp.js/issues"
+  },
+  "homepage": "https://github.com/turingsecure/burp.js#readme"
+}
