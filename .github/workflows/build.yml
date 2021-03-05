@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://registry.npmjs.org"
-          scope: "@turingpointde"
+          scope: "@turingsecure"
 
       - uses: actions/cache@v2
         id: yarn-cache
