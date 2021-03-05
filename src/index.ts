@@ -84,7 +84,7 @@ function createIssueObject(node: ChildNode, isBase64Encoded: boolean): Issue {
  *
  * @returns Issue[]
  */
-export function BurpParser(xml: string): Issue[] {
+export function BurpParser(xml: string, decodeBase64 = true): Issue[] {
   // eslint-disable-next-line no-undef
   const parser: DOMParser = new DOMParser();
   const parsed: Document = parser.parseFromString(xml, "application/xml");
@@ -93,7 +93,7 @@ export function BurpParser(xml: string): Issue[] {
     parsed
       .getElementsByTagName("requestresponse")[0]
       .getElementsByTagName("request")[0]
-      .getAttribute("base64") === "true";
+      .getAttribute("base64") === "true" && decodeBase64;
 
   // Get right issues node
   const issuesNode: Node = Array.from(parsed.childNodes).find(
