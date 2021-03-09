@@ -46,7 +46,10 @@ function parseRequestResponse(nodes: Node[], isBase64Encoded: boolean): RequestR
 
     if (isBase64Encoded) {
       responseRequestObject.request = atob(responseRequestObject.request);
-      responseRequestObject.response = atob(responseRequestObject.response);
+
+      if (responseRequestObject.response) {
+        responseRequestObject.response = atob(responseRequestObject.response);
+      }
     }
 
     requestResponse.push(responseRequestObject);
