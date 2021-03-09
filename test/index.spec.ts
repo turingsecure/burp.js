@@ -7,6 +7,7 @@ const shortXml = fs.readFileSync(path.join(__dirname, "__testdata__", "short-sca
 const shortXmlBase64 = fs.readFileSync(
   path.join(__dirname, "__testdata__", "short-scan-base64.xml")
 );
+const xmlBase64 = fs.readFileSync(path.join(__dirname, "__testdata__", "scan-base64.xml"));
 
 describe("BurpParser", () => {
   it("Should return a list of issues", () => {
@@ -53,5 +54,11 @@ describe("BurpParser", () => {
     expect(JSON.stringify(firstIssue.requestresponse)).toStrictEqual(
       '[{"request":"R0VUIC8gSFRUUC8xLjENCkhvc3Q6IGR3YS50dXJpbmdwb2ludC5kZQ0KVXBncmFkZS1JbnNlY3VyZS1SZXF1ZXN0czogMQ0KVXNlci1BZ2VudDogTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzg3LjAuNDI4MC44OCBTYWZhcmkvNTM3LjM2DQpBY2NlcHQ6IHRleHQvaHRtbCxhcHBsaWNhdGlvbi94aHRtbCt4bWwsYXBwbGljYXRpb24veG1sO3E9MC45LGltYWdlL2F2aWYsaW1hZ2Uvd2VicCxpbWFnZS9hcG5nLCovKjtxPTAuOCxhcHBsaWNhdGlvbi9zaWduZWQtZXhjaGFuZ2U7dj1iMztxPTAuOQ0KQWNjZXB0LUVuY29kaW5nOiBnemlwLCBkZWZsYXRlDQpBY2NlcHQtTGFuZ3VhZ2U6IGVuLVVTLGVuO3E9MC45DQpDb25uZWN0aW9uOiBjbG9zZQ0KDQo=","response":"SFRUUC8xLjEgMzAyIEZvdW5kDQpTZXJ2ZXI6IG5naW54DQpEYXRlOiBGcmksIDA1IE1hciAyMDIxIDA5OjM2OjM2IEdNVA0KQ29udGVudC1UeXBlOiB0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgNCkNvbnRlbnQtTGVuZ3RoOiAwDQpDb25uZWN0aW9uOiBjbG9zZQ0KU2V0LUNvb2tpZTogUEhQU0VTU0lEPWwwZTNwNGhoOW0wZGtmcXJ1MWxvYm5naHAxOyBwYXRoPS8NCkV4cGlyZXM6IFRodSwgMTkgTm92IDE5ODEgMDg6NTI6MDAgR01UDQpDYWNoZS1Db250cm9sOiBuby1zdG9yZSwgbm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZQ0KUHJhZ21hOiBuby1jYWNoZQ0KU2V0LUNvb2tpZTogUEhQU0VTU0lEPWwwZTNwNGhoOW0wZGtmcXJ1MWxvYm5naHAxOyBwYXRoPS8NClNldC1Db29raWU6IHNlY3VyaXR5PWxvdw0KTG9jYXRpb246IGxvZ2luLnBocA0KDQo=","responseRedirected":false}]'
     );
+  });
+
+  it("Should decode large xml file", () => {
+    const issues = BurpParser(xmlBase64);
+
+    expect(issues.length).toBe(172);
   });
 });

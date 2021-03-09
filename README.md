@@ -1,6 +1,6 @@
-<h1 align="center">burp.js by <a href="https://turingpoint.eu" target="_blank">turingpoint.</a></h1>
+<h1 align="center">burp.js by <a href="https://turingsecure.com" target="_blank">turingsecure.</a></h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
@@ -78,5 +78,5 @@ Feel free to check out the [issues page](https://github.com/turingsecure/burp.js
 
 ## License
 
-Copyright © 2021 [turingpoint GmbH](https://turingpoint.eu).
+Copyright © 2021 [turingsecure](https://turingsecure.com).
 This project is [MIT](LICENSE) licensed.
