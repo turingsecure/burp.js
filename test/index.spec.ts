@@ -3,11 +3,15 @@ const path = require("path");
 const { BurpParser } = require("../src/index");
 
 const xml = fs.readFileSync(path.join(__dirname, "__testdata__", "scan.xml"));
-const shortXml = fs.readFileSync(path.join(__dirname, "__testdata__", "short-scan.xml"));
+const shortXml = fs.readFileSync(
+  path.join(__dirname, "__testdata__", "short-scan.xml")
+);
 const shortXmlBase64 = fs.readFileSync(
   path.join(__dirname, "__testdata__", "short-scan-base64.xml")
 );
-const xmlBase64 = fs.readFileSync(path.join(__dirname, "__testdata__", "scan-base64.xml"));
+const xmlBase64 = fs.readFileSync(
+  path.join(__dirname, "__testdata__", "scan-base64.xml")
+);
 
 describe("BurpParser", () => {
   it("Should return a list of issues", () => {
@@ -22,6 +26,7 @@ describe("BurpParser", () => {
     const [firstIssue] = issues;
 
     expect(firstIssue).toHaveProperty("serialNumber");
+    expect(firstIssue).toHaveProperty("name");
     expect(firstIssue).toHaveProperty("type");
     expect(firstIssue).toHaveProperty("host");
     expect(firstIssue).toHaveProperty("path");

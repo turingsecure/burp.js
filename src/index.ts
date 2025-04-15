@@ -6,6 +6,7 @@ interface RequestResponse {
 
 interface Issue {
   serialNumber?: string;
+  name?: string;
   type?: string;
   host?: string;
   path?: string;
@@ -28,7 +29,10 @@ function getTextContent(nodes: Node[], property: string): string | undefined {
   return findChildNode(nodes, property)?.textContent;
 }
 
-function parseRequestResponse(nodes: Node[], isBase64Encoded: boolean): RequestResponse[] {
+function parseRequestResponse(
+  nodes: Node[],
+  isBase64Encoded: boolean
+): RequestResponse[] {
   const requestResponseNodes = nodes.filter(
     (childNode: Node) => childNode.nodeName === "requestresponse"
   );
@@ -41,7 +45,8 @@ function parseRequestResponse(nodes: Node[], isBase64Encoded: boolean): RequestR
     const responseRequestObject: RequestResponse = {
       request: getTextContent(childNodes, "request"),
       response: getTextContent(childNodes, "response"),
-      responseRedirected: getTextContent(childNodes, "responseRedirected") === "true"
+      responseRedirected:
+        getTextContent(childNodes, "responseRedirected") === "true",
     };
 
     if (isBase64Encoded) {
@@ -63,6 +68,7 @@ function createIssueObject(node: ChildNode, isBase64Encoded: boolean): Issue {
 
   const issueObject: Issue = {
     serialNumber: getTextContent(childNodes, "serialNumber"),
+    name: getTextContent(childNodes, "name"),
     type: getTextContent(childNodes, "type"),
     host: getTextContent(childNodes, "host"),
     path: getTextContent(childNodes, "path"),
@@ -71,10 +77,13 @@ function createIssueObject(node: ChildNode, isBase64Encoded: boolean): Issue {
     confidence: getTextContent(childNodes, "confidence"),
     issueBackground: getTextContent(childNodes, "issueBackground"),
     remediationBackground: getTextContent(childNodes, "remediationBackground"),
-    vulnerabilityClassifications: getTextContent(childNodes, "vulnerabilityClassifications"),
+    vulnerabilityClassifications: getTextContent(
+      childNodes,
+      "vulnerabilityClassifications"
+    ),
     issueDetail: getTextContent(childNodes, "issueDetail"),
     references: getTextContent(childNodes, "references"),
-    requestresponse: parseRequestResponse(childNodes, isBase64Encoded)
+    requestresponse: parseRequestResponse(childNodes, isBase64Encoded),
   };
 
   return issueObject;

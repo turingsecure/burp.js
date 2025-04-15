@@ -1,6 +1,6 @@
 {
   "name": "@turingsecure/burp.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Client side parser for Burp Suite XML output files.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,22 +25,12 @@
     "type": "git",
     "url": "https://github.com/turingsecure/burp.js.git"
   },
-  "keywords": [
-    "burp",
-    "xml",
-    "parser",
-    "security",
-    "javascript",
-    "itsec"
-  ],
+  "keywords": ["burp", "xml", "parser", "security", "javascript", "itsec"],
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "js"],
     "testRegex": "^.+\\.spec\\.ts$"
   },
   "author": "turingsecure",
